@@ -1,0 +1,7 @@
+* Object.finalize() is a deprecated API. In order to better support Java,
+	we probably need to look into either using Closeable/AutoCloseable for our
+	classes or forget Java 1.8 and go straight to 1.9+ and look into using the
+	Cleaner/Cleanable constructs...
+
+	NOTE: leaning toward the Closeable/AutoCloseable APIs; Transaction already
+	supports AutoCloseable, just needs it finalize() method removed.

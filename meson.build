@@ -302,7 +302,7 @@ endif
 bindings = []
 if 'all' in get_option('bindings')
     assert(get_option('bindings').length() == 1, 'The -Dbindings=all option cannot have additional values')
-    bindings += 'python'
+    bindings += ['python', 'java']
 elif 'none' in get_option('bindings')
     assert(get_option('bindings').length() == 1, 'The -Dbindings=none option cannot have additional values')
 elif 'auto' in get_option('bindings')
@@ -385,6 +385,15 @@ if 'python' in bindings
     )
 else
     hse_python_depends = disabler()
+endif
+
+if 'java' in bindings
+    subproject(
+        'hse-java',
+        default_options: [
+            'tests=@0@'.format(get_option('tests')),
+        ]
+    )
 endif
 
 if get_option('db_bench') and get_option('experimental')

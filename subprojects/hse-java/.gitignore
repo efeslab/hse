@@ -1,0 +1,8 @@
+*build*/
+target/
+.classpath
+.settings/
+.project
+*.log
+subprojects/*
+!subprojects/hse.wrap
