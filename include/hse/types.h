@@ -79,14 +79,14 @@ struct hse_kvdb;
  * @brief Media classes.
  */
 enum hse_mclass {
-    HSE_MCLASS_CAPACITY = 0,
-    HSE_MCLASS_STAGING = 1,
-    HSE_MCLASS_PMEM = 2,
+    HSE_MCLASS_CAPACITY = 0, /**< Capacity media class. */
+    HSE_MCLASS_STAGING = 1,  /**< Staging media class. */
+    HSE_MCLASS_PMEM = 2,     /**< PMEM media class. */
 };
 
-#define HSE_MCLASS_BASE  HSE_MCLASS_CAPACITY  /**< Capacity media class. */
-#define HSE_MCLASS_MAX   HSE_MCLASS_PMEM      /**< Staging media class. */
-#define HSE_MCLASS_COUNT (HSE_MCLASS_MAX + 1) /**< PMEM media class. */
+#define HSE_MCLASS_BASE  HSE_MCLASS_CAPACITY  /**< Base media class. */
+#define HSE_MCLASS_MAX   HSE_MCLASS_PMEM      /**< Maximum media class. */
+#define HSE_MCLASS_COUNT (HSE_MCLASS_MAX + 1) /**< Number of media classes. */
 
 #define HSE_MCLASS_CAPACITY_NAME "capacity" /**< Capacity media class name. */
 #define HSE_MCLASS_STAGING_NAME  "staging"  /**< Staging media class name. */
@@ -96,10 +96,10 @@ enum hse_mclass {
  * @brief Media class information.
  */
 struct hse_mclass_info {
-    uint64_t mi_allocated_bytes; /**< Allocated storage space for a media class. */
-    uint64_t mi_used_bytes;      /**< Used storage space for a media class. */
+    uint64_t mi_allocated_bytes; /**< Allocated storage space for the media class. */
+    uint64_t mi_used_bytes;      /**< Used storage space for the media class. */
     uint64_t mi_reserved[8];     /**< Reserved space for future expansion. */
-    char     mi_path[PATH_MAX];  /**< Path to the media class. */
+    char     mi_path[PATH_MAX];  /**< Path to a media class. */
 };
 
 /**@} KVDB */
@@ -140,10 +140,10 @@ struct hse_kvdb_txn;
 
 /** @brief Transaction state. */
 enum hse_kvdb_txn_state {
-    HSE_KVDB_TXN_INVALID = 0,   /**< invalid state */
-    HSE_KVDB_TXN_ACTIVE = 1,    /**< active state */
-    HSE_KVDB_TXN_COMMITTED = 2, /**< committed state */
-    HSE_KVDB_TXN_ABORTED = 3,   /**< aborted state */
+    HSE_KVDB_TXN_INVALID = 0,   /**< Invalid state. */
+    HSE_KVDB_TXN_ACTIVE = 1,    /**< Active state. */
+    HSE_KVDB_TXN_COMMITTED = 2, /**< Committed state. */
+    HSE_KVDB_TXN_ABORTED = 3,   /**< Aborted state. */
 };
 
 /** @} TRANSACTIONS */

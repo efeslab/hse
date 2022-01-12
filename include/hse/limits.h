@@ -37,10 +37,10 @@ extern "C" {
  */
 #define HSE_KVS_NAME_LEN_MAX 32
 
-/** @brief Max key prefix length. */
+/** @brief Maximum key prefix length. */
 #define HSE_KVS_PFX_LEN_MAX 32
 
-/** @brief Max value length is 1MiB.
+/** @brief Maximum value length.
  *
  * Values need not be NULL-terminated.
  */

@@ -39,11 +39,11 @@ extern "C" {
 
 /** @brief Status of a compaction request. */
 struct hse_kvdb_compact_status {
-    unsigned int kvcs_samp_lwm;  /**< space amp low water mark (%). */
-    unsigned int kvcs_samp_hwm;  /**< space amp high water mark (%). */
-    unsigned int kvcs_samp_curr; /**< current space amp (%). */
-    unsigned int kvcs_active;    /**< is an externally requested compaction underway. */
-    unsigned int kvcs_canceled;  /**< was an externally requested compaction canceled. */
+    unsigned int kvcs_samp_lwm;  /**< Space amp low water mark (%). */
+    unsigned int kvcs_samp_hwm;  /**< Space amp high water mark (%). */
+    unsigned int kvcs_samp_curr; /**< Current space amp (%). */
+    unsigned int kvcs_active;    /**< Is an externally requested compaction underway. */
+    unsigned int kvcs_canceled;  /**< Was an externally requested compaction canceled. */
 };
 
 /** @brief Request a data compaction operation.

@@ -143,7 +143,7 @@ hse_init(const char *config, size_t paramc, const char *const *paramv);
 void
 hse_fini(void);
 
-/** @brief Get HSE global parameter.
+/** @brief Get an HSE global parameter.
  *
  * Puts the stringified version of the parameter value into @p buf. If @p buf_sz
  * is NULL, then @p needed_sz will still be populated.
@@ -331,7 +331,7 @@ hse_kvdb_open(
     const char *const *paramv,
     struct hse_kvdb ** kvdb);
 
-/** @brief Get KVDB parameter.
+/** @brief Get a KVDB parameter.
  *
  * Puts the stringified version of the parameter value into @p buf. If @p buf_sz
  * is NULL, then @p needed_sz will still be populated.
@@ -468,7 +468,7 @@ hse_kvdb_kvs_create(
 hse_err_t
 hse_kvdb_kvs_drop(struct hse_kvdb *kvdb, const char *kvs_name);
 
-/** @brief Open a KVS in a KVDB.
+/** @brief Open a KVS in the referenced KVDB.
  *
  * This function is not thread safe.
  *
@@ -506,7 +506,7 @@ hse_kvdb_kvs_open(
  * @param kvs: KVS handle from hse_kvdb_kvs_open().
  * @param flags: Flags for operation specialization.
  * @param txn: Transaction context (optional).
- * @param key: Key to be deleted from @p kvs.
+ * @param key: Key to delete.
  * @param key_len: Length of @p key.
  *
  * @remark @p kvs must not be NULL.
@@ -524,7 +524,7 @@ hse_kvs_delete(
     const void *         key,
     size_t               key_len);
 
-/** @brief Retrieve the value for a given key from the KVS.
+/** @brief Retrieve the value for a given key from the referenced KVS.
  *
  * If the key exists in the KVS, then the referent of @p found is set to true.
  * If the caller's value buffer is large enough then the data will be returned.
@@ -539,7 +539,7 @@ hse_kvs_delete(
  * @param kvs: KVS handle from hse_kvdb_kvs_open().
  * @param flags: Flags for operation specialization.
  * @param txn: Transaction context (optional).
- * @param key: Key to get from @p kvs.
+ * @param key: Key to get.
  * @param key_len: Length of @p key.
  * @param[out] found: Whether or not @p key was found.
  * @param[in,out] buf: Buffer into which the value associated with @p key will
@@ -582,7 +582,7 @@ hse_kvs_get(
 const char *
 hse_kvs_name_get(struct hse_kvs *kvs);
 
-/** @brief Get KVS parameter.
+/** @brief Get a KVS parameter.
  *
  * Puts the stringified version of the parameter value into @p buf. If @p buf_sz
  * is NULL, then @p needed_sz will still be populated.
@@ -650,7 +650,7 @@ hse_kvs_prefix_delete(
     const void *         pfx,
     size_t               pfx_len);
 
-/** @brief Put a key-value pair into KVS.
+/** @brief Put a key-value pair into the referenced KVS.
  *
  * If the key already exists in the KVS then the value is effectively
  * overwritten. See @ref TRANSACTIONS for information on how puts within
@@ -679,7 +679,7 @@ hse_kvs_prefix_delete(
  * @param kvs: KVS handle from hse_kvdb_kvs_open().
  * @param flags: Flags for operation specialization.
  * @param txn: Transaction context (optional).
- * @param key: Key to put into @p kvs.
+ * @param key: Key to put into the KVS.
  * @param key_len: Length of @p key.
  * @param val: Value associated with @p key (optional).
  * @param val_len: Length of @p value.
@@ -834,7 +834,7 @@ hse_kvdb_txn_begin(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
 hse_err_t
 hse_kvdb_txn_commit(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
 
-/** @brief Free transaction object.
+/** @brief Free the transaction object.
  *
  * @warning After invoking this function, calling any other transaction
  * functions with this handle will result in undefined behavior.
@@ -854,7 +854,7 @@ hse_kvdb_txn_commit(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
 void
 hse_kvdb_txn_free(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
 
-/** @brief Retrieve the state of the referenced transaction.
+/** @brief Get the state of the transaction.
  *
  * This function is thread safe with different transactions.
  *
@@ -909,9 +909,9 @@ hse_kvdb_txn_state_get(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
  * of keys in the KVS whose first @p filter_len bytes match the @p filter_len
  * bytes pointed to by @p filter.
  *
- * A prefix cursor is created when:
- * @li KVS was created with @p pfx_len > 0 (i.e., it is a prefix KVS), and
- * @li @p filter != NULL and @p filter_len >= @p pfx_len.
+ * A prefix cursor is created when the following two conditions are met:
+ * @li KVS was created with a prefix length > 0 (i.e., it is a prefix KVS)
+ * @li @p filter != NULL and @p filter_len >= @p prefix.length.
  *
  * Otherwise, a non-prefix cursor is created.
  *
@@ -929,7 +929,7 @@ hse_kvdb_txn_state_get(struct hse_kvdb *kvdb, struct hse_kvdb_txn *txn);
  * @param kvs: KVS to iterate over, handle from hse_kvdb_kvs_open().
  * @param flags: Flags for operation specialization.
  * @param txn: Transaction context (optional).
- * @param filter: Iteration limited to keys matching this prefix filter
+ * @param filter: Iteration limited to keys matching this prefix filter.
  * (optional).
  * @param filter_len: Length of filter (optional).
  * @param[out] cursor: Cursor handle.
@@ -954,7 +954,7 @@ hse_kvs_cursor_create(
  * @warning After invoking this function, calling any other cursor functions
  * with this handle will result in undefined behavior.
  *
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * @param cursor: Cursor handle from hse_kvs_cursor_create().
  *
@@ -973,7 +973,7 @@ hse_kvs_cursor_destroy(struct hse_kvs_cursor *cursor);
  *
  * @note If the cursor is at EOF, attempts to read from it will not change the
  * state of the cursor.
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * <b>Flags:</b>
  * @arg 0 - Reserved for future use.
@@ -1014,7 +1014,7 @@ hse_kvs_cursor_read(
  *
  * @note If the cursor is at EOF, attempts to read from it will not change the
  * state of the cursor.
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * <b>Flags:</b>
  * @arg 0 - Reserved for future use.
@@ -1056,7 +1056,7 @@ hse_kvs_cursor_read_copy(
  * The next hse_kvs_cursor_read() will start at this point. Both @p found and @p
  * found_len must be non-NULL for that functionality to work.
  *
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * <b>Flags:</b>
  * @arg 0 - Reserved for future use.
@@ -1094,7 +1094,7 @@ hse_kvs_cursor_seek(
  * found_len must be non-NULL for that functionality to work.
  *
  * @note This is only supported for forward cursors.
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * <b>Flags:</b>
  * @arg 0 - Reserved for future use.
@@ -1126,12 +1126,12 @@ hse_kvs_cursor_seek_range(
     const void **          found,
     size_t *               found_len);
 
-/** @brief Update a the cursor view.
+/** @brief Update the cursor view.
  *
  * This operation updates the snapshot view of a non-transaction cursor. It is a
  * no-op on transaction cursors.
  *
- * @note Cursor objects are not thread safe.
+ * @note This function is thread safe with different cursors.
  *
  * <b>Flags:</b>
  * @arg 0 - Reserved for future use.
