@@ -12,7 +12,7 @@ option('tools', type: 'feature', value: 'auto',
     description: 'Build tools')
 option('samples', type: 'boolean', value: true,
     description: 'Build samples')
-option('bindings', type: 'array', choices: ['all', 'none', 'auto', 'python'], value: ['auto'],
+option('bindings', type: 'array', choices: ['all', 'none', 'auto', 'java', 'python'], value: ['auto'],
     description: 'Build language bindings')
 option('docs', type: 'feature', value: 'auto',
     description: 'Build documentation')
