@@ -455,10 +455,6 @@ if get_option('tests')
     subdir('tests')
 endif
 
-if get_option('ycsb')
-    subdir('hsejni')
-endif
-
 format = find_program('scripts/dev/format.sh')
 run_target(
     'format',

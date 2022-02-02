@@ -99,7 +99,7 @@ jobs:
       - name: Setup
         run: |
           meson builddir -Dbuildtype=${{ matrix.buildtype }} -Dtools=enabled \
-            -Ddocs=disabled -Dbindings=all -Dycsb=true -Dwerror=true
+            -Ddocs=disabled -Dbindings=all -Dwerror=true
 
       - name: Build
         run: |
@@ -183,7 +183,7 @@ jobs:
         run: |
           meson builddir -Dbuildtype=${{ matrix.buildtype }} \
             --fatal-meson-warnings -Dtools=enabled -Dpmem=enabled \
-            -Ddocs=disabled -Dbindings=all -Dycsb=true -Dwerror=true
+            -Ddocs=disabled -Dbindings=all -Dwerror=true
 
       - name: Build
         run: |
@@ -267,7 +267,7 @@ jobs:
       - name: Setup
         run: |
           meson builddir -Dbuildtype=${{ matrix.buildtype }} -Dtools=enabled \
-            -Ddocs=disabled -Dbindings=all -Dycsb=true -Dwerror=true
+            -Ddocs=disabled -Dbindings=all -Dwerror=true
 
       - name: Build
         run: |
@@ -400,7 +400,7 @@ jobs:
         run: |
           meson builddir -Dbuildtype=${{ matrix.buildtype }} \
             -Db_sanitize=address,undefined -Dwerror=true -Dtools=enabled \
-            -Ddocs=disabled -Dbindings=all -Dycsb=true
+            -Ddocs=disabled -Dbindings=all
 
       - name: Build
         run: |
