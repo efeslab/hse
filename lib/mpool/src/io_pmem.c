@@ -12,6 +12,8 @@
 
 #include <libpmem.h>
 
+#include "valgrind/pmemcheck.h"
+
 merr_t
 io_pmem_read(
     int                 src_fd,
@@ -46,6 +48,8 @@ io_pmem_mmap(void **addr, size_t len, int prot, int flags, int fd, off_t offset)
     flags |= (MAP_SHARED_VALIDATE | MAP_SYNC);
 
     addrout = mmap(*addr, len, prot, flags, fd, offset);
+    VALGRIND_PMC_REGISTER_PMEM_MAPPING(addrout, len);
+	VALGRIND_PMC_REGISTER_PMEM_FILE(fd, addrout, len, 0);
     if (addrout == MAP_FAILED)
         return merr(errno);
 
@@ -62,6 +66,7 @@ io_pmem_munmap(void *addr, size_t len)
     INVARIANT(addr);
 
     rc = munmap(addr, len);
+    VALGRIND_PMC_REMOVE_PMEM_MAPPING(addr, len);
 
     return (rc == -1) ? merr(errno) : 0;
 }
