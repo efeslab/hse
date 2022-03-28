@@ -12,10 +12,12 @@
 
 #define MPOOL_MCLASS_FILECNT_MIN       (1)
 #define MPOOL_MCLASS_FILECNT_MAX       (UINT8_MAX)
-#define MPOOL_MCLASS_FILECNT_DEFAULT   (32)
+//#define MPOOL_MCLASS_FILECNT_DEFAULT   (32)
+#define MPOOL_MCLASS_FILECNT_DEFAULT   (1) // Hossein: Use fewer files due to Valgrind's mmap issue
 
 #define MPOOL_MCLASS_FILESZ_MIN        (64ull << GB_SHIFT)
 #define MPOOL_MCLASS_FILESZ_MAX        (65536ull << GB_SHIFT)
-#define MPOOL_MCLASS_FILESZ_DEFAULT    (2048ull << GB_SHIFT)
+//#define MPOOL_MCLASS_FILESZ_DEFAULT    (2048ull << GB_SHIFT)
+#define MPOOL_MCLASS_FILESZ_DEFAULT    (64ull << GB_SHIFT) // Hossein: Use smaller files due to Valgrind's mmap issue
 
 #endif /* MPOOL_LIMITS_H */
