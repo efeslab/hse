@@ -70,11 +70,4 @@ kvdb_health_check(struct kvdb_health *health, uint event_mask);
 merr_t
 kvdb_health_clear(struct kvdb_health *health, uint event);
 
-/**
- * kvdb_health_clearall() - clear all the health events for a kvdb
- * @health: pointer to a kvdb health structure
- */
-merr_t
-kvdb_health_clearall(struct kvdb_health *health);
-
 #endif

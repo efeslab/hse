@@ -94,7 +94,4 @@ wal_fset(struct wal *wal);
 struct wal_mdc *
 wal_mdc(struct wal *wal);
 
-struct kvdb_health *
-wal_health(struct wal *wal);
-
 #endif /* WAL_INTERNAL_H */

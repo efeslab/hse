@@ -759,7 +759,7 @@ c0sk_sync(struct c0sk *handle, const unsigned int flags)
 
     cv_destroy(&waiter.c0skw_cv);
 
-    return kvdb_health_check(self->c0sk_kvdb_health, KVDB_HEALTH_FLAG_ALL);
+    return 0;
 }
 
 static void

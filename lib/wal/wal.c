@@ -790,8 +790,6 @@ errout:
 void
 wal_close(struct wal *wal)
 {
-    merr_t err;
-
     if (!wal)
         return;
 
@@ -818,9 +816,8 @@ wal_close(struct wal *wal)
 
     destroy_workqueue(wal->wq);
 
-    /* Write a close record to indicate graceful shutdown if there's no health error */
-    err = kvdb_health_check(wal->health, KVDB_HEALTH_FLAG_ALL);
-    if (!err && !wal->read_only)
+    /* Write a close record to indicate graceful shutdown */
+    if (!wal->read_only)
         wal_mdc_close_write(wal->mdc);
     wal_mdc_close(wal->mdc);
 
@@ -930,12 +927,6 @@ struct wal_mdc *
 wal_mdc(struct wal *wal)
 {
     return wal->mdc;
-}
-
-struct kvdb_health *
-wal_health(struct wal *wal)
-{
-    return wal->health;
 }
 
 #if HSE_MOCKING
