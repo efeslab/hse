@@ -89,35 +89,35 @@ tools = {
             'omf_encoder_perf/omf_encoder_perf.c',
         ),
     },
-    'kmt': {
-        'sources': files(
-            'kmt/kmt.c',
-            'parm_groups.c',
-        ),
-        'c_args': [
-            '-DHDR_HISTOGRAM_C_FROM_SUBPROJECT=@0@'.format(get_variable('HdrHistogram_c_from_subproject', 0)),
-        ],
-        'dependencies': [
-            HdrHistogram_c_dep,
-            libmongoc_dep,
-            libbson_dep,
-        ],
-    },
-    'xkmt': {
-        'sources': files(
-            'kmt/kmt.c',
-            'parm_groups.c',
-        ),
-        'c_args': [
-            '-DHDR_HISTOGRAM_C_FROM_SUBPROJECT=@0@'.format(get_variable('HdrHistogram_c_from_subproject', 0)),
-            '-DXKMT',
-        ],
-        'dependencies': [
-            HdrHistogram_c_dep,
-            libmongoc_dep,
-            libbson_dep,
-        ],
-    },
+    # 'kmt': {
+    #     'sources': files(
+    #         'kmt/kmt.c',
+    #         'parm_groups.c',
+    #     ),
+    #     'c_args': [
+    #         '-DHDR_HISTOGRAM_C_FROM_SUBPROJECT=@0@'.format(get_variable('HdrHistogram_c_from_subproject', 0)),
+    #     ],
+    #     'dependencies': [
+    #         HdrHistogram_c_dep,
+    #         libmongoc_dep,
+    #         libbson_dep,
+    #     ],
+    # },
+    # 'xkmt': {
+    #     'sources': files(
+    #         'kmt/kmt.c',
+    #         'parm_groups.c',
+    #     ),
+    #     'c_args': [
+    #         '-DHDR_HISTOGRAM_C_FROM_SUBPROJECT=@0@'.format(get_variable('HdrHistogram_c_from_subproject', 0)),
+    #         '-DXKMT',
+    #     ],
+    #     'dependencies': [
+    #         HdrHistogram_c_dep,
+    #         libmongoc_dep,
+    #         libbson_dep,
+    #     ],
+    # },
     'ksync': {
         'sources': files(
             'ksync/ksync.c',
