@@ -1,24 +1,24 @@
 tests = {
-    'test_kmt_ro': {
-        'suite': 'kmt',
-        'timeout': 600,
-        'depends': [
-            tool_targets['kmt'],
-        ],
-        'env': environment({
-            'HSE_TEST_RUNNER_RUNNER': 'python',
-        })
-    },
-    'test_kmt_rw': {
-        'suite': 'kmt',
-        'timeout': 600,
-        'depends': [
-            tool_targets['kmt'],
-        ],
-        'env': environment({
-            'HSE_TEST_RUNNER_RUNNER': 'python',
-        })
-    },
+    # 'test_kmt_ro': {
+    #     'suite': 'kmt',
+    #     'timeout': 600,
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    #     'env': environment({
+    #         'HSE_TEST_RUNNER_RUNNER': 'python',
+    #     })
+    # },
+    # 'test_kmt_rw': {
+    #     'suite': 'kmt',
+    #     'timeout': 600,
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    #     'env': environment({
+    #         'HSE_TEST_RUNNER_RUNNER': 'python',
+    #     })
+    # },
     'test_ycsb_2tb_putget': {
         'suite': 'ycsb',
         'timeout': 0,

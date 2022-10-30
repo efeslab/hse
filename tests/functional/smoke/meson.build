@@ -115,12 +115,12 @@ tests = {
             tool_targets['mdcperf'],
         ],
     },
-    'key-imm-disc': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-        ],
-    },
+    # 'key-imm-disc': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    # },
     'kvt-simple': {
         'suites': ['smoke'],
         'depends': [
@@ -133,21 +133,21 @@ tests = {
             tool_targets['ctxn_validation'],
         ],
     },
-    'prefix-tree-shape1': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-            tool_targets['putbin'],
-            tool_targets['cn_metrics'],
-        ],
-    },
-    'prefix-basic': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-            tool_targets['pscan'],
-        ],
-    },
+    # 'prefix-tree-shape1': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #         tool_targets['putbin'],
+    #         tool_targets['cn_metrics'],
+    #     ],
+    # },
+    # 'prefix-basic': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #         tool_targets['pscan'],
+    #     ],
+    # },
     'longtestkvmax': {
         'suites': ['smoke', 'nightly-small'],
         'depends': [
@@ -169,12 +169,12 @@ tests = {
             tool_targets['cn_metrics'],
         ],
     },
-    'kvs-max': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-        ],
-    },
+    # 'kvs-max': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    # },
     'omf_encoder_perf': {
         'suites': ['smoke', 'nightly-small'],
         'depends': [
@@ -193,18 +193,18 @@ tests = {
             tool_targets['kvt'],
         ],
     },
-    'kmt1': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-        ],
-    },
-    'kmt-mpool': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-        ],
-    },
+    # 'kmt1': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    # },
+    # 'kmt-mpool': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #     ],
+    # },
     'kvt-isolation': {
         'suites': ['smoke'],
         'depends': [
@@ -217,14 +217,14 @@ tests = {
             tool_targets['bnt'],
         ],
     },
-    'large-values1': {
-        'suites': ['smoke', 'nightly-small'],
-        'depends': [
-            tool_targets['kmt'],
-            tool_targets['cn_metrics'],
-            tool_targets['putbin'],
-        ],
-    },
+    # 'large-values1': {
+    #     'suites': ['smoke', 'nightly-small'],
+    #     'depends': [
+    #         tool_targets['kmt'],
+    #         tool_targets['cn_metrics'],
+    #         tool_targets['putbin'],
+    #     ],
+    # },
     'cursor_test2': {
         'suites': ['smoke'],
         'depends': [
