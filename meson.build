@@ -357,25 +357,25 @@ endif
 # Environment in which various run_targets and tests will run in
 run_env = environment()
 
-if 'python' in bindings
-    hse_python = subproject('hse-python')
+# if 'python' in bindings
+#     hse_python = subproject('hse-python')
 
-    hse_python_depends = [
-        hse_python.get_variable('extension_modules'),
-    ]
-    run_env.set('PYTHONPATH', hse_python.get_variable('project_build_root'))
+#     hse_python_depends = [
+#         hse_python.get_variable('extension_modules'),
+#     ]
+#     run_env.set('PYTHONPATH', hse_python.get_variable('project_build_root'))
 
-    run_target(
-        'python-repl',
-        command: [
-            python,
-        ],
-        depends: hse_python_depends,
-        env: run_env,
-    )
-else
-    hse_python_depends = disabler()
-endif
+#     run_target(
+#         'python-repl',
+#         command: [
+#             python,
+#         ],
+#         depends: hse_python_depends,
+#         env: run_env,
+#     )
+# else
+#     hse_python_depends = disabler()
+# endif
 
 if get_option('db_bench')
     if get_option('experimental')
@@ -396,13 +396,13 @@ subdir('tools')
 
 run_env.prepend('PATH', executable_paths)
 
-if get_option('tests')
-    subdir('tests')
-endif
+# if get_option('tests')
+#     subdir('tests')
+# endif
 
-if get_option('ycsb')
-    subdir('hsejni')
-endif
+# if get_option('ycsb')
+#     subdir('hsejni')
+# endif
 
 format = find_program('scripts/dev/format')
 run_target(
