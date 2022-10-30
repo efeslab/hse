@@ -45,8 +45,18 @@ vbr_desc_read(
 
     supported = (omf_vbh_magic(hdr) == VBLOCK_HDR_MAGIC &&
                  (VBLOCK_HDR_VERSION2 <= vers && vers <= VBLOCK_HDR_VERSION));
-    if (ev(!supported))
+                 
+    printf("debug: hdr %p \n", hdr);
+    printf("debug: vers %d \n", vers);
+    printf("debug: vgroup %d \n", vgroup);
+    printf("debug: magic %d \n", omf_vbh_magic(hdr));
+    if (ev(!supported)) {
+        if (omf_vbh_magic(hdr) != VBLOCK_HDR_MAGIC) printf("First condition not satisfied \n");
+        if (VBLOCK_HDR_VERSION2 > vers) printf("Second condition not satisfied \n");
+        if (vers > VBLOCK_HDR_VERSION) printf("Third condtion not satisfied \n");
         return merr(EPROTO);
+
+    }
 
     memset(vblk_desc, 0, sizeof(*vblk_desc));
     vblk_desc->vbd_mblkdesc.map_base = base;
